@@ -1,5 +1,6 @@
 import { Inter, Nunito, Josefin_Sans } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Nunito({ subsets: ["latin"], weight: ["700"] });
 // const inter = Josefin_Sans({
@@ -14,8 +15,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
