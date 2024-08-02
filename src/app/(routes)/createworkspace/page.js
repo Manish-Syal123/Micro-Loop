@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { LuLoader, LuSmilePlus } from "react-icons/lu";
+import uuid4 from "uuid4";
 
 const CreateWorkspace = () => {
   const [coverImage, setCoverImage] = useState("/cover3.jpg");
@@ -23,20 +24,43 @@ const CreateWorkspace = () => {
   const OnCreateWorkspace = async () => {
     try {
       setLoading(true);
-      const docId = Date.now();
+      const workspaceId = Date.now();
 
-      const result = await setDoc(doc(db, "workspaces", docId.toString()), {
-        name: workspaceName,
-        emoji: emoji,
-        coverImage: coverImage,
+      const result = await setDoc(
+        doc(db, "workspaces", workspaceId.toString()),
+        {
+          name: workspaceName,
+          emoji: emoji,
+          coverImage: coverImage,
+          createdBy: user?.primaryEmailAddress?.emailAddress,
+          id: workspaceId,
+          orgId: orgId ? orgId : user?.primaryEmailAddress?.emailAddress,
+        }
+      );
+
+      const docId = uuid4();
+      await setDoc(doc(db, "workspaceDocuments", docId.toString()), {
+        workspaceId: workspaceId,
         createdBy: user?.primaryEmailAddress?.emailAddress,
+        coverImage: null,
+        emoji: null,
         id: docId,
-        orgId: orgId ? orgId : user?.primaryEmailAddress?.emailAddress,
+        documentName: "Untitled Document",
+        documentOutput: [],
       });
+
+      await setDoc(doc(db, "documentOutput", docId.toString()), {
+        docId: docId,
+        output: [],
+      });
+
       setLoading(false);
-      router.replace("/workspace/" + docId);
+      router.replace("/workspace/" + workspaceId + "/" + docId);
     } catch (error) {
-      console.error("Error creating workspace and saving data to DB: ", error);
+      console.error(
+        "Error creating workspace/default document and saving data to DB: ",
+        error
+      );
     }
   };
 
