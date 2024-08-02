@@ -3,14 +3,42 @@ import CoverPicker from "@/app/_components/CoverPicker";
 import EmojiPickerComponent from "@/app/_components/EmojiPickerComponent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { db } from "@/config/firebaseConfig";
+import { useAuth, useUser } from "@clerk/nextjs";
+import { doc, setDoc } from "firebase/firestore";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { LuSmilePlus } from "react-icons/lu";
+import { LuLoader, LuSmilePlus } from "react-icons/lu";
 
 const CreateWorkspace = () => {
   const [coverImage, setCoverImage] = useState("/cover3.jpg");
   const [workspaceName, setWorkspaceName] = useState();
   const [emoji, setEmoji] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { user } = useUser();
+  const { orgId } = useAuth();
+  const router = useRouter();
+
+  const OnCreateWorkspace = async () => {
+    try {
+      setLoading(true);
+      const docId = Date.now();
+
+      const result = await setDoc(doc(db, "workspaces", docId.toString()), {
+        name: workspaceName,
+        emoji: emoji,
+        coverImage: coverImage,
+        createdBy: user?.primaryEmailAddress?.emailAddress,
+        id: docId,
+        orgId: orgId ? orgId : user?.primaryEmailAddress?.emailAddress,
+      });
+      setLoading(false);
+      router.replace("/workspace/" + docId);
+    } catch (error) {
+      console.error("Error creating workspace and saving data to DB: ", error);
+    }
+  };
 
   return (
     <div className="p-10 md:px-36 lg:px-64 xl:px-96 py-28">
@@ -50,7 +78,13 @@ const CreateWorkspace = () => {
             />
           </div>
           <div className="mt-7 flex justify-end gap-6">
-            <Button disabled={!workspaceName?.length}>Create</Button>
+            <Button
+              disabled={!workspaceName?.length || loading}
+              onClick={OnCreateWorkspace}
+            >
+              Create{" "}
+              {loading && <LuLoader size={20} className="animate-spin ml-2" />}
+            </Button>
             <Button variant="outline">Cancle</Button>
           </div>
         </div>
