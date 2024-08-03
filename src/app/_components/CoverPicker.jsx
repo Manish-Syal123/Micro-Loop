@@ -25,6 +25,7 @@ const CoverPicker = ({ children, setNewCover }) => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3">
               {CoverOption.map((cover, index) => (
                 <div
+                  key={index}
                   onClick={() => setSelectedCover(cover?.imageUrl)}
                   className={`${
                     selectedCover === cover?.imageUrl &&
@@ -33,6 +34,7 @@ const CoverPicker = ({ children, setNewCover }) => {
                 >
                   <Image
                     src={cover?.imageUrl}
+                    alt="cover"
                     width={200}
                     height={140}
                     className="h-[70px] w-full rounded-md object-cover hover:shadow-lg hover:shadow-black/50 cursor-pointer"

@@ -10,7 +10,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { LuBell, LuLoader } from "react-icons/lu";
 import DocumentList from "./DocumentList";
 import uuid4 from "uuid4";
@@ -129,4 +129,4 @@ const SideNav = ({ params }) => {
   );
 };
 
-export default SideNav;
+export default memo(SideNav);

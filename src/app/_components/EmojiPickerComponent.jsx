@@ -7,7 +7,7 @@ const EmojiPickerComponent = ({ children, setEmojiIcon }) => {
     <div>
       <div onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>{children}</div>
       {openEmojiPicker && (
-        <di className="absolute z-10">
+        <div className="absolute z-10">
           <EmojiPicker
             emojiStyle="facebook"
             onEmojiClick={(e) => {
@@ -15,7 +15,7 @@ const EmojiPickerComponent = ({ children, setEmojiIcon }) => {
               setOpenEmojiPicker(false);
             }}
           />
-        </di>
+        </div>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import DocumentOptions from "./DocumentOptions";
 import { deleteDoc, doc } from "firebase/firestore";
 import { toast } from "sonner";
@@ -54,4 +54,4 @@ const DocumentList = ({ documentList, params }) => {
   );
 };
 
-export default DocumentList;
+export default memo(DocumentList);
