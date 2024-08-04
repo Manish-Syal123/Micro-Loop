@@ -10,19 +10,44 @@ import LinkTool from "@editorjs/link";
 import CodeTool from "@editorjs/code";
 import Table from "@editorjs/table";
 import Paragraph from "@editorjs/paragraph";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { db } from "@/config/firebaseConfig";
+import { useUser } from "@clerk/nextjs";
 
-const RichDocumentEditor = () => {
+const RichDocumentEditor = ({ params }) => {
   const ref = useRef();
+  const { user } = useUser();
   let editor;
+  let isFetched = false;
 
   useEffect(() => {
-    InitEditor();
-  }, []);
+    user && InitEditor();
+  }, [user]);
 
   const SaveDocument = () => {
-    ref.current.save().then((outputData) => {
-      console.log("Article data: ", outputData);
+    ref.current.save().then(async (outputData) => {
+      // console.log("Article data: ", outputData);
+      const docRef = doc(db, "documentOutput", params?.documentid);
+      await updateDoc(docRef, {
+        output: outputData,
+        editedBy: user?.primaryEmailAddress?.emailAddress,
+      });
     });
+  };
+
+  const GetDocumentOutput = () => {
+    const unsubscribe = onSnapshot(
+      doc(db, "documentOutput", params?.documentid),
+      (doc) => {
+        if (
+          doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
+          isFetched == false
+        ) {
+          doc.data()?.output && editor.render(doc.data()?.output);
+        }
+        isFetched = true;
+      }
+    );
   };
 
   const InitEditor = () => {
@@ -30,6 +55,9 @@ const RichDocumentEditor = () => {
       editor = new EditorJS({
         onChange: (api, event) => {
           SaveDocument();
+        },
+        onReady: () => {
+          GetDocumentOutput();
         },
         holder: "editorjs",
         tools: {
@@ -90,12 +118,12 @@ const RichDocumentEditor = () => {
             class: CodeTool,
             shortcut: "CMD+SHIFT+P",
           },
-          linkTool: {
-            class: LinkTool,
-            // config: {
-            //   endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching,
-            // }
-          },
+          // linkTool: {
+          //   class: LinkTool,
+          //   // config: {
+          //   //   endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching,
+          //   // }
+          // },
         },
       });
       ref.current = editor;

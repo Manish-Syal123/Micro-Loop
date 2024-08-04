@@ -12,7 +12,7 @@ const DocumentEditorSection = ({ params }) => {
       {/* Document Info */}
       <DocumentInfo params={params} />
       {/* Rich Text Editor */}
-      <RichDocumentEditor />
+      <RichDocumentEditor params={params} />
     </div>
   );
 };
