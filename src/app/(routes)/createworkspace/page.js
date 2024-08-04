@@ -27,9 +27,9 @@ const CreateWorkspace = () => {
       const workspaceId = Date.now();
 
       const result = await setDoc(
-        doc(db, "workspaces", workspaceId.toString()),
+        doc(db, "Workspace", workspaceId.toString()),
         {
-          name: workspaceName,
+          workspaceName: workspaceName,
           emoji: emoji,
           coverImage: coverImage,
           createdBy: user?.primaryEmailAddress?.emailAddress,
@@ -76,6 +76,7 @@ const CreateWorkspace = () => {
             <div className="group-hover:opacity-50">
               <Image
                 src={coverImage}
+                alt="cover"
                 width={400}
                 height={400}
                 className="w-full h-[180px] object-cover rounded-t-xl"

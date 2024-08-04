@@ -25,29 +25,37 @@ const RichDocumentEditor = ({ params }) => {
   }, [user]);
 
   const SaveDocument = () => {
-    ref.current.save().then(async (outputData) => {
-      // console.log("Article data: ", outputData);
-      const docRef = doc(db, "documentOutput", params?.documentid);
-      await updateDoc(docRef, {
-        output: outputData,
-        editedBy: user?.primaryEmailAddress?.emailAddress,
+    try {
+      ref.current.save().then(async (outputData) => {
+        // console.log("Article data: ", outputData);
+        const docRef = doc(db, "documentOutput", params?.documentid);
+        await updateDoc(docRef, {
+          output: outputData,
+          editedBy: user?.primaryEmailAddress?.emailAddress,
+        });
       });
-    });
+    } catch (error) {
+      console.error("Error saving document: ", error);
+    }
   };
 
   const GetDocumentOutput = () => {
-    const unsubscribe = onSnapshot(
-      doc(db, "documentOutput", params?.documentid),
-      (doc) => {
-        if (
-          doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
-          isFetched == false
-        ) {
-          doc.data()?.output && editor.render(doc.data()?.output);
+    try {
+      const unsubscribe = onSnapshot(
+        doc(db, "documentOutput", params?.documentid),
+        (doc) => {
+          if (
+            doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
+            isFetched == false
+          ) {
+            doc.data()?.output && editor.render(doc.data()?.output);
+          }
+          isFetched = true;
         }
-        isFetched = true;
-      }
-    );
+      );
+    } catch (error) {
+      console.error("Error getting documentOutput: ", error);
+    }
   };
 
   const InitEditor = () => {
