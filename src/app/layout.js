@@ -2,6 +2,7 @@ import { Inter, Nunito, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import "@liveblocks/react-ui/styles.css";
 
 const inter = Nunito({ subsets: ["latin"], weight: ["700"] });
 // const inter = Josefin_Sans({

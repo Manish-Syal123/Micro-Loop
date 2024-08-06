@@ -40,22 +40,17 @@ const RichDocumentEditor = ({ params }) => {
   };
 
   const GetDocumentOutput = () => {
-    try {
-      const unsubscribe = onSnapshot(
-        doc(db, "documentOutput", params?.documentid),
-        (doc) => {
-          if (
-            doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
-            isFetched == false
-          ) {
-            doc.data()?.output && editor.render(doc.data()?.output);
-          }
-          isFetched = true;
-        }
-      );
-    } catch (error) {
-      console.error("Error getting documentOutput: ", error);
-    }
+    const unsubscribe = onSnapshot(
+      doc(db, "documentOutput", params?.documentid),
+      (doc) => {
+        if (
+          doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
+          isFetched == false
+        )
+          doc.data().editedBy && editor?.render(JSON.parse(doc.data()?.output));
+        isFetched = true;
+      }
+    );
   };
 
   const InitEditor = () => {
@@ -139,10 +134,8 @@ const RichDocumentEditor = ({ params }) => {
   };
 
   return (
-    <div className="flex">
-      <div className="relative w-full ml-32 lg:-ml-40">
-        <div id="editorjs" className="ltr"></div>
-      </div>
+    <div className="lg:ml-80">
+      <div id="editorjs" className="ltr"></div>
     </div>
   );
 };
