@@ -5,23 +5,7 @@ export default [
   },
   {
     imageUrl:
-      "https://img.freepik.com/free-photo/abstract-flame-shapes-flowing-vibrant-blue-yellow-colors-generated-by-artificial-intelligence_188544-84559.jpg?ga=GA1.1.1679917421.1705195646&semt=ais_user_ai_gen",
-  },
-  {
-    imageUrl:
       "https://img.freepik.com/free-photo/smooth-waves-vibrant-colors-flow-abstractly-generated-by-ai_188544-9810.jpg?ga=GA1.1.1679917421.1705195646&semt=ais_user_ai_gen",
-  },
-  {
-    imageUrl:
-      "https://img.freepik.com/free-vector/gradient-geometric-wallpaper_52683-55729.jpg?ga=GA1.1.1679917421.1705195646&semt=sph",
-  },
-  {
-    imageUrl:
-      "https://img.freepik.com/free-vector/abstract-colorful-technology-dotted-wave-background_1035-17450.jpg?ga=GA1.1.1679917421.1705195646&semt=sph",
-  },
-  {
-    imageUrl:
-      "https://img.freepik.com/free-photo/geometric-seamless-pattern_23-2151021459.jpg?ga=GA1.1.1679917421.1705195646&semt=sph",
   },
   {
     imageUrl:
@@ -30,10 +14,6 @@ export default [
   {
     imageUrl:
       "https://img.freepik.com/free-photo/abstract-psychedelic-papercut-background_23-2149303027.jpg?ga=GA1.1.1679917421.1705195646&semt=sph",
-  },
-  {
-    imageUrl:
-      "https://img.freepik.com/free-vector/geometric-wallpaper-japanese-style_52683-34401.jpg?ga=GA1.1.1679917421.1705195646&semt=sph",
   },
   {
     imageUrl:
@@ -49,10 +29,30 @@ export default [
   },
   {
     imageUrl:
-      "https://img.freepik.com/free-photo/minimalist-colorful-3d-lines-background_1409-4965.jpg?t=st=1721822568~exp=1721826168~hmac=63610a79e449250105959bd41a3af2f9018622345d71625821a1d1affaf510fa&w=2000",
+      "https://img.freepik.com/premium-photo/3d-retro-geometric-stagestyle-background_861171-7077.jpg?w=1060",
   },
   {
     imageUrl:
-      "https://img.freepik.com/free-photo/seamless-abstract-pattern-design_23-2151179146.jpg?ga=GA1.1.1679917421.1705195646&semt=ais_user_ai_gen",
+      "https://img.freepik.com/premium-photo/3d-podium-product-showcase-background-with-nature-product-blue-studio-display-background_1236927-2417.jpg?w=1060",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/gradient-3d-abstract-background_23-2150892209.jpg?w=996&t=st=1723015710~exp=1723016310~hmac=222485a4e85c8387226b70d7924640b09de5e503125c9df52be67de8128a5793",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/realistic-3d-abstract-background_52683-142626.jpg?w=996&t=st=1723015782~exp=1723016382~hmac=908b274f5b207a79b8c2eae09bf967bda422b6590586ea9b10be3bf70a07f64b ",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/paper-style-galaxy-background_23-2148978861.jpg?t=st=1723015919~exp=1723019519~hmac=10b2518751ed65c1137384e365deb4e3b4784149d3069063dac8b582337e7281&w=996",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/realistic-spheres-background_52683-77822.jpg?t=st=1723015988~exp=1723019588~hmac=edd4cf3eedc6acc792268b091a9c3e781ceface5f261238e3a49a0d7bb1970d4&w=996",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/black-gold-background_23-2148076909.jpg?t=st=1723016120~exp=1723019720~hmac=d41bc6fce8d4b041f510fb2d40288aeeb0b81cb6227ac323a2d6ec55aff51c5b&w=740",
   },
 ];

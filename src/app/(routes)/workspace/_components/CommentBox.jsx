@@ -1,7 +1,7 @@
 "use client";
-import { useThreads } from "@liveblocks/react/suspense";
+import { useThreads } from "@liveblocks/react";
 import { Composer, Thread } from "@liveblocks/react-ui";
-import React, { memo } from "react";
+import React from "react";
 
 const CommentBox = () => {
   const { threads } = useThreads();
@@ -10,7 +10,12 @@ const CommentBox = () => {
       {threads?.map((thread) => (
         <Thread key={thread.id} thread={thread} />
       ))}
-      <Composer />
+      {/* <Composer /> */}
+      <Composer className="z-10">
+        <Composer.Submit className="btn-primary" style={{ color: "#ffffff" }}>
+          Reply
+        </Composer.Submit>
+      </Composer>
     </div>
   );
 };

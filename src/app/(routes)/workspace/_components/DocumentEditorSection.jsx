@@ -21,7 +21,7 @@ const DocumentEditorSection = ({ params }) => {
           <RichDocumentEditor params={params} />
         </div>
 
-        <div className="fixed bottom-5 right-5 ">
+        <div className="fixed bottom-5 right-5 z-20">
           {openComment && <CommentBox />}
           <Button
             onClick={() => setOpenComment(!openComment)}

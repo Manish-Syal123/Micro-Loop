@@ -30,7 +30,7 @@ const RichDocumentEditor = ({ params }) => {
         // console.log("Article data: ", outputData);
         const docRef = doc(db, "documentOutput", params?.documentid);
         await updateDoc(docRef, {
-          output: outputData,
+          output: JSON.stringify(outputData),
           editedBy: user?.primaryEmailAddress?.emailAddress,
         });
       });
@@ -47,7 +47,7 @@ const RichDocumentEditor = ({ params }) => {
           doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
           isFetched == false
         )
-          doc.data().editedBy && editor?.render(doc.data()?.output);
+          doc.data().editedBy && editor?.render(JSON.parse(doc.data()?.output));
         isFetched = true;
       }
     );
