@@ -10,7 +10,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { LuBell, LuLoader } from "react-icons/lu";
 import DocumentList from "./DocumentList";
 import uuid4 from "uuid4";
@@ -28,35 +28,40 @@ const SideNav = ({ params }) => {
   const { user } = useUser();
   const router = useRouter();
 
+  const workspaceId = useMemo(() => Number(params?.workspaceid), [params]);
+
   useEffect(() => {
-    params && GetDocumentList();
+    if (params) {
+      GetDocumentList();
+    }
   }, [params]);
 
-  const GetDocumentList = () => {
+  const GetDocumentList = useCallback(() => {
     try {
       setLoading(true);
       const q = query(
         collection(db, "workspaceDocuments"),
-        where("workspaceId", "==", Number(params?.workspaceid))
+        where("workspaceId", "==", Number(workspaceId))
       );
       // this will get the documents based on the query
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        setDocumentList([]); // empty the list before fetchinng the list of documents
-
+        const documents = [];
         querySnapshot.forEach((doc) => {
-          //   console.log(doc.id, " => ", doc.data())
-          setDocumentList((documentList) => [...documentList, doc.data()]);
+          documents.push(doc.data());
+          // setDocumentList((documentList) => [...documentList, doc.data()]);
         });
+        setDocumentList(documents);
       });
-      setLoading(false);
+      return () => unsubscribe(); // Clean up the listener when the component unmounts
     } catch (error) {
       console.error("Error getting documents: ", error);
+    } finally {
       setLoading(false);
     }
-  };
+  }, [workspaceId]);
 
   //To create new Document
-  const CreateNewDocument = async () => {
+  const CreateNewDocument = useCallback(async () => {
     if (documentList?.length >= MAX_FILE) {
       toast("Upgrade Plan to add new Files.", {
         description: "You have reached the maximum number of documents.",
@@ -70,15 +75,18 @@ const SideNav = ({ params }) => {
     try {
       setLoading(true);
       const docId = uuid4();
-      await setDoc(doc(db, "workspaceDocuments", docId.toString()), {
-        workspaceId: Number(params?.workspaceid),
+
+      const newDoc = {
+        workspaceId: Number(workspaceId),
         createdBy: user?.primaryEmailAddress?.emailAddress,
         coverImage: null,
         emoji: null,
         id: docId,
         documentName: "Untitled Document",
         documentOutput: [],
-      });
+      };
+
+      await setDoc(doc(db, "workspaceDocuments", docId.toString()), newDoc);
 
       await setDoc(doc(db, "documentOutput", docId.toString()), {
         docId: docId,
@@ -86,12 +94,13 @@ const SideNav = ({ params }) => {
       });
 
       setLoading(false);
-      router.replace("/workspace/" + params?.workspaceid + "/" + docId);
+      router.replace("/workspace/" + workspaceId + "/" + docId);
     } catch (error) {
       console.error("Error creating document: ", error);
       setLoading(false);
     }
-  };
+  }, [documentList?.length, router, user, workspaceId]);
+
   return (
     <div className="h-screen md:w-72 hidden md:block fixed bg-blue-50 p-5 shadow-md">
       <div className="flex items-center justify-between">
