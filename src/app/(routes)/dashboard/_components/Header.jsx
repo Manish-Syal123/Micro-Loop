@@ -34,10 +34,12 @@ const Header = () => {
   return (
     <div className="flex items-center justify-between p-3 shadow-sm">
       <Logo />
-      <OrganizationSwitcher
-        afterCreateOrganizationUrl={"/dashboard"}
-        afterLeaveOrganizationUrl={"/dashboard"}
-      />
+      {user && orgId && (
+        <OrganizationSwitcher
+          afterCreateOrganizationUrl={"/dashboard"}
+          afterLeaveOrganizationUrl={"/dashboard"}
+        />
+      )}
       <UserButton />
     </div>
   );

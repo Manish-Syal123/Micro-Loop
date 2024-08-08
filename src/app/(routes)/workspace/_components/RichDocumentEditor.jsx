@@ -13,6 +13,7 @@ import Paragraph from "@editorjs/paragraph";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "@/config/firebaseConfig";
 import { useUser } from "@clerk/nextjs";
+import GenerateAITemplate from "./GenerateAITemplate";
 
 const RichDocumentEditor = ({ params }) => {
   const ref = useRef();
@@ -134,8 +135,13 @@ const RichDocumentEditor = ({ params }) => {
   };
 
   return (
-    <div className="lg:ml-80">
-      <div id="editorjs" className="ltr"></div>
+    <div className="">
+      <div id="editorjs" className="w-[70%]"></div>
+      <div className="fixed bottom-10 md:ml-80 left-0 z-10">
+        <GenerateAITemplate
+          setGenerateAIOutput={(output) => editor?.render(output)}
+        />
+      </div>
     </div>
   );
 };
