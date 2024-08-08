@@ -11,9 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const DocumentOptions = ({ doc, deleteDocument }) => {
+const DocumentOptions = ({ doc, deleteDocument, expanded }) => {
   return (
-    <div>
+    <div className={`${!expanded && "hidden"}`}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <LuMoreVertical className="h-4 w-4" />
