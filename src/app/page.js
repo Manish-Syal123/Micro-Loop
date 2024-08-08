@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Header from "./_components/Header";
+import Hero from "./_components/Hero";
 
 export default function Home() {
   return (
     <div>
-      <h2>Welcome to Micro Loop</h2>
-      <Link href="/dashboard">
-        <Button variant="outline" size="lg">
-          Get Started
-        </Button>
-      </Link>
+      <Header />
+      <Hero />
     </div>
   );
 }
