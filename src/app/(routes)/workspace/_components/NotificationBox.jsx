@@ -15,7 +15,6 @@ const NotificationBox = ({ children }) => {
   const { inboxNotifications } = useInboxNotifications();
   const updateRoomNotificationSettings = useUpdateRoomNotificationSettings();
   const { count, error, isLoading } = useUnreadInboxNotificationsCount();
-
   useEffect(() => {
     //if someone replies to your comment, then u will be notified but if you want for every comment you want notification then u use updateRoomNotificationSettings({threads:'all'})
     updateRoomNotificationSettings({ threads: "all" }); // you can comment this line if u don't want notification for every comment

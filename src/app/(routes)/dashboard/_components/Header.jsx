@@ -8,7 +8,7 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import { doc, setDoc } from "firebase/firestore";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 const Header = () => {
   const { orgId } = useAuth();
@@ -19,7 +19,7 @@ const Header = () => {
   }, [user]);
 
   // saving user data in firebase
-  const saveUserData = async () => {
+  const saveUserData = useCallback(async () => {
     const docId = user?.primaryEmailAddress?.emailAddress;
     try {
       await setDoc(doc(db, "LoopUsers", docId), {
@@ -30,16 +30,16 @@ const Header = () => {
     } catch (error) {
       console.log("Error saving user data: ", error);
     }
-  };
+  }, [user]);
   return (
     <div className="flex items-center justify-between p-3 shadow-sm">
       <Logo />
-      {user && orgId && (
-        <OrganizationSwitcher
-          afterCreateOrganizationUrl={"/dashboard"}
-          afterLeaveOrganizationUrl={"/dashboard"}
-        />
-      )}
+
+      <OrganizationSwitcher
+        afterCreateOrganizationUrl={"/dashboard"}
+        afterLeaveOrganizationUrl={"/dashboard"}
+      />
+
       <UserButton />
     </div>
   );

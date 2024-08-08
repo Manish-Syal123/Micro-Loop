@@ -122,12 +122,6 @@ const RichDocumentEditor = ({ params }) => {
             class: CodeTool,
             shortcut: "CMD+SHIFT+P",
           },
-          // linkTool: {
-          //   class: LinkTool,
-          //   // config: {
-          //   //   endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching,
-          //   // }
-          // },
         },
       });
       ref.current = editor;
@@ -136,7 +130,7 @@ const RichDocumentEditor = ({ params }) => {
 
   return (
     <div className="">
-      <div id="editorjs" className="w-[70%]"></div>
+      <div id="editorjs" className=""></div>
       <div className="fixed bottom-10 md:ml-80 left-0 z-10">
         <GenerateAITemplate
           setGenerateAIOutput={(output) => editor?.render(output)}
