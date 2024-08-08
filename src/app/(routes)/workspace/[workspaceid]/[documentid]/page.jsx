@@ -19,7 +19,7 @@ const WorkspaceDocument = ({ params }) => {
         </div>
 
         {/* Document */}
-        <div className="lg:ml-72 ml-[4.5rem]">
+        <div className={`${expanded ? "ml-72" : "ml-[4.5rem]"} `}>
           <DocumentEditorSection params={params} />
         </div>
       </div>

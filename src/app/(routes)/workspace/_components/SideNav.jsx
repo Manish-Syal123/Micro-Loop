@@ -107,26 +107,29 @@ const SideNav = ({ params, expanded, setExpanded }) => {
     }
   }, [documentList?.length, router, user, workspaceId]);
 
-  // useEffect(() => {
-  //   const mediaQuery = window.matchMedia("(min-width: 1024px)"); // 'lg' breakpoint is 1024px in Tailwind
-  //   const handleMediaChange = (e) => {
-  //     if (e.matches) {
-  //       setExpanded(true);
-  //     }
-  //   };
+  // For responsiveness of SideNav based on screen size: When screen size becames smaller it will automatically collaps the sideNav for responsiveness
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024) {
+        setExpanded(false);
+      } else {
+        setExpanded(true);
+      }
+    };
 
-  //   handleMediaChange(mediaQuery); // Set initial value
-  //   mediaQuery.addEventListener("change", handleMediaChange);
+    window.addEventListener("resize", handleResize);
+    handleResize();
 
-  //   return () => {
-  //     mediaQuery.removeEventListener("change", handleMediaChange);
-  //   };
-  // }, [setExpanded]);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
-      className={`h-screen w-16 lg:w-72 z-50 md:block 
+      className={`h-screen  md:${() => setExpanded(flase)} z-50 md:block 
       fixed bg-blue-50 p-5 shadow-md
-      ${expanded && "w-72"}
+      ${!expanded ? "w-16" : "w-72"}
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
