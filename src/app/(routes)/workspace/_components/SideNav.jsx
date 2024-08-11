@@ -107,23 +107,23 @@ const SideNav = ({ params, expanded, setExpanded }) => {
     }
   }, [documentList?.length, router, user, workspaceId]);
 
-  // For responsiveness of SideNav based on screen size: When screen size becames smaller it will automatically collaps the sideNav for responsiveness
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 1024) {
-        setExpanded(false);
-      } else {
-        setExpanded(true);
-      }
-    };
+  // // For responsiveness of SideNav based on screen size: When screen size becames smaller it will automatically collaps the sideNav for responsiveness
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth <= 1024) {
+  //       setExpanded(false);
+  //     } else {
+  //       setExpanded(true);
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   return (
     <div

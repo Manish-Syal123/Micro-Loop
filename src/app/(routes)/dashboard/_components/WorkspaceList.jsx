@@ -79,7 +79,10 @@ const WorkspaceList = () => {
         </div>
       ) : (
         <div>
-          <WorkspaceItemList workspaceList={WorkspaceList} />
+          <WorkspaceItemList
+            workspaceList={WorkspaceList}
+            refreshData={getWorkspaceList}
+          />
         </div>
       )}
     </div>

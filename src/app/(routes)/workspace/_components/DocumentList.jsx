@@ -27,9 +27,7 @@ const DocumentList = ({ documentList, params, expanded }) => {
             router.push(`/workspace/${params?.workspaceid}/${doc.id}`)
           }
           className={`mt-3 p-2 px-3 hover:bg-gray-200 
-        rounded-lg cursor-pointer flex sm:justify-center ${
-          expanded && "md:justify-between"
-        }lg:justify-between items-center
+        rounded-lg cursor-pointer flex sm:justify-center md:justify-between items-center
         ${doc.id == params?.documentid && "bg-white"}
         group
         `}

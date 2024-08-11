@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { chatSession } from "@/config/GoogleAIModel";
+import { toast } from "sonner";
 
 const GenerateAITemplate = ({ setGenerateAIOutput }) => {
   const [open, setOpen] = useState(false);
@@ -28,8 +29,10 @@ const GenerateAITemplate = ({ setGenerateAIOutput }) => {
     try {
       const output = JSON.parse(result.response.text());
       setGenerateAIOutput(output);
+      toast.success("Template Generated !");
     } catch (error) {
       console.error("Error parsing JSON: ", error);
+      toast.error("Error Generating Template!");
     } finally {
       setLoading(false);
       setOpen(false);

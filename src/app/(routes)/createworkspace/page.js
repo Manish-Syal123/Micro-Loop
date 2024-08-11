@@ -52,6 +52,7 @@ const CreateWorkspace = () => {
       await setDoc(doc(db, "documentOutput", docId.toString()), {
         docId: docId,
         output: [],
+        workspaceId: workspaceId,
       });
 
       setLoading(false);
