@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 const DocumentHeader = () => {
   return (
@@ -8,7 +10,15 @@ const DocumentHeader = () => {
       <div></div>
       <OrganizationSwitcher />
       <div className="flex gap-2">
-        <Button>Share</Button>
+        <Link href="/dashboard">
+          <Button
+            variant="outline"
+            className="flex gap-2 hover:text-primary hover:border-[1.5px] hover:border-primary group"
+          >
+            <LuLayoutDashboard className="h-4 w-4 hidden group-hover:block" />
+            Dashboard
+          </Button>
+        </Link>
         <UserButton />
       </div>
     </div>

@@ -48,7 +48,14 @@ const RichDocumentEditor = ({ params }) => {
           doc.data()?.editedBy != user?.primaryEmailAddress?.emailAddress ||
           isFetched == false
         )
-          doc.data().editedBy && editor?.render(JSON.parse(doc.data()?.output));
+          if (doc.data().editedBy) {
+            const data = doc.data()?.output;
+            if (data) {
+              editor.render(JSON.parse(data));
+            } else {
+              console.warn("No data to render");
+            }
+          }
         isFetched = true;
       }
     );

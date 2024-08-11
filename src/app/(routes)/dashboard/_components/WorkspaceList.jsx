@@ -56,10 +56,10 @@ const WorkspaceList = () => {
         <div>
           <h2 className="font-medium text-primary">Workspaces</h2>
         </div>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <LuLayoutDashboard size={20} />
           <LuAlignLeft size={20} />
-        </div>
+        </div> */}
       </div>
 
       {/* <WorkspaceList /> */}
