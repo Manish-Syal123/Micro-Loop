@@ -9,6 +9,8 @@ import Link from "next/link";
 import WorkspaceItemList from "./WorkspaceItemList";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/firebaseConfig";
+import EmptyWorkspace from "../../../../../public/EmptyWorkspace.json";
+import Lottie from "lottie-react";
 
 const WorkspaceList = () => {
   const { user } = useUser();
@@ -65,12 +67,17 @@ const WorkspaceList = () => {
       {/* <WorkspaceList /> */}
       {WorkspaceList?.length == 0 ? (
         <div className="flex flex-col justify-center items-center my-10">
-          <Image
+          {/* <Image
             // src="/workspacesvg.svg"
             src="/workspaceimg.jpg"
             alt="workspace"
             width={250}
             height={250}
+          /> */}
+          <Lottie
+            animationData={EmptyWorkspace}
+            loop={true}
+            className="h-[23rem] w-fit -mt-8"
           />
           <h2 className="mt-4">Create New Workspace</h2>
           <Link href="/createworkspace">
