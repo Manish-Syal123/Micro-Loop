@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { LuBrain, LuLoader } from "react-icons/lu";
 import { TbBrain } from "react-icons/tb";
 
@@ -81,4 +81,4 @@ const GenerateAITemplate = ({ setGenerateAIOutput }) => {
   );
 };
 
-export default GenerateAITemplate;
+export default memo(GenerateAITemplate);
