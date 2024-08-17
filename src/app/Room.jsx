@@ -8,6 +8,7 @@ import {
 } from "@liveblocks/react/suspense";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/firebaseConfig";
+import Loading from "./(routes)/loading";
 
 export function Room({ children, params }) {
   return (
@@ -53,7 +54,7 @@ export function Room({ children, params }) {
       }}
     >
       <RoomProvider id={params?.documentid ? params?.documentid : "1"}>
-        <ClientSideSuspense fallback={<div>Loading…</div>}>
+        <ClientSideSuspense fallback={<Loading />}>
           {children}
         </ClientSideSuspense>
       </RoomProvider>

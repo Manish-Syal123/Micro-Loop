@@ -136,7 +136,7 @@ const RichDocumentEditor = ({ params }) => {
   };
 
   return (
-    <div className="ml-0 md:ml-10 lg:ml-0 border-2">
+    <div className="ml-0 md:ml-10 lg:ml-0">
       <div id="editorjs"></div>
       <div className="fixed bottom-10 sm:ml-12 md:ml-64 lg:ml-56 left-0 z-10">
         <GenerateAITemplate
