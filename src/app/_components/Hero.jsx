@@ -1,5 +1,6 @@
 import AiButton from "@/components/animata/button/ai-button";
 import ArrowButton from "@/components/animata/button/arrow-button";
+import AnimatedBorderTrail from "@/components/animata/container/animated-border-trail";
 import React from "react";
 
 const Hero = () => {
@@ -47,8 +48,8 @@ const Hero = () => {
                 <ArrowButton />
               </a>
             </div>
-            <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
-              <div className="text-left">
+            <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between gap-4">
+              {/* <div className="text-left">
                 <h6 className="text-lg font-semibold text-gray-700 dark:text-white">
                   The lowest price
                 </h6>
@@ -65,7 +66,25 @@ const Hero = () => {
                   The most loved
                 </h6>
                 <p className="mt-2 text-gray-500">Some text here</p>
-              </div>
+              </div> */}
+              <AnimatedBorderTrail trailSize="lg">
+                <div className="max-w-sm  md:text-[15px] lg:text-lg h-32 p-4 text-center font-medium text-zinc-600">
+                  No longer wasting hours 🕕 looking for the inspiration or
+                  trying to write everything from scratch 📝.
+                </div>
+              </AnimatedBorderTrail>
+              <AnimatedBorderTrail trailSize="lg">
+                <div className="max-w-sm md:text-[15px] lg:text-lg h-32 p-4 text-center font-medium text-zinc-600">
+                  Now you can Generate the conetnt, template and more 🚀, with
+                  aour Generate from AI ✨ feature.
+                </div>
+              </AnimatedBorderTrail>
+              <AnimatedBorderTrail trailSize="lg">
+                <div className="max-w-sm md:text-[15px] lg:text-[17px] h-32 p-4 text-center font-medium text-zinc-600">
+                  Create and maintain Workshop. Switch between different
+                  organizations. Chat with others working on the same document.
+                </div>
+              </AnimatedBorderTrail>
             </div>
           </div>
 

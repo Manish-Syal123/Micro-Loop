@@ -70,11 +70,16 @@ module.exports = {
           "0%, 100%": { opacity: "0.75", scale: "0.9" },
           "50%": { opacity: "1", scale: "1" },
         },
+        trail: {
+          "0%": { "--angle": "0deg" },
+          "100%": { "--angle": "360deg" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         sparkle: "sparkle 2s ease-in-out infinite",
+        trail: "trail var(--duration) linear infinite",
       },
     },
   },
