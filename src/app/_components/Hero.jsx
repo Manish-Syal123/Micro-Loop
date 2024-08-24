@@ -1,7 +1,11 @@
+"use client";
 import AiButton from "@/components/animata/button/ai-button";
 import ArrowButton from "@/components/animata/button/arrow-button";
 import AnimatedBorderTrail from "@/components/animata/container/animated-border-trail";
+import Lottie from "lottie-react";
+import Image from "next/image";
 import React from "react";
+import revenueapp from "../../../public/revenueapp.json";
 
 const Hero = () => {
   return (
@@ -33,40 +37,31 @@ const Hero = () => {
                 href="/dashboard"
                 className="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 sm:w-max"
               >
-                {/* <span className="relative text-base font-semibold text-white">
-                  Get started
-                </span> */}
                 <AiButton />
               </a>
               <a
                 href="#"
                 className="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0  sm:w-max"
               >
-                {/* <span className="relative text-base font-semibold text-primary dark:text-white">
-                  Learn more
-                </span> */}
                 <ArrowButton />
               </a>
             </div>
-            <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between gap-4">
-              {/* <div className="text-left">
-                <h6 className="text-lg font-semibold text-gray-700 dark:text-white">
-                  The lowest price
-                </h6>
-                <p className="mt-2 text-gray-500">Some text here</p>
-              </div>
-              <div className="text-left">
-                <h6 className="text-lg font-semibold text-gray-700 dark:text-white">
-                  The fastest on the market
-                </h6>
-                <p className="mt-2 text-gray-500">Some text here</p>
-              </div>
-              <div className="text-left">
-                <h6 className="text-lg font-semibold text-gray-700 dark:text-white">
-                  The most loved
-                </h6>
-                <p className="mt-2 text-gray-500">Some text here</p>
+            <div className="mt-16 flex flex-col justify-between gap-4 items-center w-full">
+              {/* <div className="flex justify-end"> */}
+              <Image
+                src={"/mobile-gallery.gif"}
+                alt="gif"
+                width={1000}
+                height={900}
+                className="rounded-2xl shadow-2xl"
+                // className="w-[60%] h-[60%] shadow-md rounded-2xl"
+              />
+              {/* </div> */}
+              {/* <div className="w-[50%]  shadow-md rounded-3xl flex justify-start">
+                <Lottie animationData={revenueapp} loop={true} />
               </div> */}
+            </div>
+            <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between gap-4">
               <AnimatedBorderTrail trailSize="lg">
                 <div className="max-w-sm  md:text-[15px] lg:text-lg h-32 p-4 text-center font-medium text-zinc-600">
                   No longer wasting hours 🕕 looking for the inspiration or
